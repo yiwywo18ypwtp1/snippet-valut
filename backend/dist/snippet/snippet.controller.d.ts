@@ -1,5 +1,6 @@
 import { SnippetService } from "./snippet.service";
 import { CreateSnippetDto } from "../dto/create-snippet.dto";
+import { UpdateSnippetDto } from "../dto/update-snippet.dto";
 export declare class SnippetController {
     private readonly snippetService;
     constructor(snippetService: SnippetService);
@@ -23,30 +24,25 @@ export declare class SnippetController {
     } & {
         id: string;
     }, {}, import("../schemas/snippet.schema").SnippetDocument, "find", {}>;
-    findOne(id: string): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
+    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & {
         __v: number;
     } & {
         id: string;
-    }) | null, import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
+    }>;
+    update(id: string, dto: UpdateSnippetDto): Promise<import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & {
         __v: number;
     } & {
         id: string;
-    }, {}, import("../schemas/snippet.schema").SnippetDocument, "findOne", {}>;
-    remove(id: string): import("mongoose").Query<(import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
+    }>;
+    remove(id: string): Promise<import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & {
         __v: number;
     } & {
         id: string;
-    }) | null, import("mongoose").Document<unknown, {}, import("../schemas/snippet.schema").SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & import("../schemas/snippet.schema").Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
-        _id: import("mongoose").Types.ObjectId;
-    }> & {
-        __v: number;
-    } & {
-        id: string;
-    }, {}, import("../schemas/snippet.schema").SnippetDocument, "findOneAndDelete", {}>;
+    }>;
 }

@@ -38,11 +38,29 @@ let SnippetService = class SnippetService {
         }
         return this.snippetModel.find(filter).sort({ createdAt: -1 });
     }
-    findOne(id) {
-        return this.snippetModel.findById(id);
+    async findOne(id) {
+        const snippet = await this.snippetModel.findById(id);
+        if (!snippet) {
+            throw new common_1.NotFoundException('Snippet not found');
+        }
+        return snippet;
     }
-    delete(id) {
-        return this.snippetModel.findByIdAndDelete(id);
+    async update(id, dto) {
+        const updated = await this.snippetModel.findByIdAndUpdate(id, dto, {
+            new: true,
+            runValidators: true,
+        });
+        if (!updated) {
+            throw new Error('Snippet not found');
+        }
+        return updated;
+    }
+    async delete(id) {
+        const deleted = await this.snippetModel.findByIdAndDelete(id);
+        if (!deleted) {
+            throw new common_1.NotFoundException('Snippet not found');
+        }
+        return deleted;
     }
 };
 exports.SnippetService = SnippetService;

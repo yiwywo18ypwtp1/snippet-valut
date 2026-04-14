@@ -1,5 +1,6 @@
 import { Model } from "mongoose";
 import { CreateSnippetDto } from "../dto/create-snippet.dto";
+import { UpdateSnippetDto } from "../dto/update-snippet.dto";
 import { Snippet, SnippetDocument } from "../schemas/snippet.schema";
 export declare class SnippetService {
     private snippetModel;
@@ -24,30 +25,25 @@ export declare class SnippetService {
     } & {
         id: string;
     }, {}, SnippetDocument, "find", {}>;
-    findOne(id: string): import("mongoose").Query<(import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
+    findOne(id: string): Promise<import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & {
         __v: number;
     } & {
         id: string;
-    }) | null, import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
+    }>;
+    update(id: string, dto: UpdateSnippetDto): Promise<import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & {
         __v: number;
     } & {
         id: string;
-    }, {}, SnippetDocument, "findOne", {}>;
-    delete(id: string): import("mongoose").Query<(import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
+    }>;
+    delete(id: string): Promise<import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
         _id: import("mongoose").Types.ObjectId;
     }> & {
         __v: number;
     } & {
         id: string;
-    }) | null, import("mongoose").Document<unknown, {}, SnippetDocument, {}, import("mongoose").DefaultSchemaOptions> & Snippet & import("mongoose").Document<import("mongoose").Types.ObjectId, any, any, Record<string, any>, {}> & Required<{
-        _id: import("mongoose").Types.ObjectId;
-    }> & {
-        __v: number;
-    } & {
-        id: string;
-    }, {}, SnippetDocument, "findOneAndDelete", {}>;
+    }>;
 }

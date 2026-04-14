@@ -16,6 +16,7 @@ exports.SnippetController = void 0;
 const common_1 = require("@nestjs/common");
 const snippet_service_1 = require("./snippet.service");
 const create_snippet_dto_1 = require("../dto/create-snippet.dto");
+const update_snippet_dto_1 = require("../dto/update-snippet.dto");
 let SnippetController = class SnippetController {
     snippetService;
     constructor(snippetService) {
@@ -29,6 +30,9 @@ let SnippetController = class SnippetController {
     }
     findOne(id) {
         return this.snippetService.findOne(id);
+    }
+    update(id, dto) {
+        return this.snippetService.update(id, dto);
     }
     remove(id) {
         return this.snippetService.delete(id);
@@ -57,6 +61,14 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], SnippetController.prototype, "findOne", null);
+__decorate([
+    (0, common_1.Patch)(':id'),
+    __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, update_snippet_dto_1.UpdateSnippetDto]),
+    __metadata("design:returntype", void 0)
+], SnippetController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

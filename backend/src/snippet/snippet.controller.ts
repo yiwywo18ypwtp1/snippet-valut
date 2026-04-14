@@ -1,6 +1,7 @@
-import { Controller, Post, Get, Delete, Body, Query, Param } from "@nestjs/common";
+import { Controller, Post, Get, Patch, Delete, Body, Query, Param } from "@nestjs/common";
 import { SnippetService } from "./snippet.service";
 import { CreateSnippetDto } from "src/dto/create-snippet.dto";
+import { UpdateSnippetDto } from "src/dto/update-snippet.dto";
 
 @Controller('snippets')
 export class SnippetController {
@@ -22,6 +23,14 @@ export class SnippetController {
     @Get(':id')
     findOne(@Param('id') id: string) {
         return this.snippetService.findOne(id);
+    }
+
+    @Patch(':id')
+    update(
+        @Param('id') id: string,
+        @Body() dto: UpdateSnippetDto,
+    ) {
+        return this.snippetService.update(id, dto);
     }
 
     @Delete(':id')
