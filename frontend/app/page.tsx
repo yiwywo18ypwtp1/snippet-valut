@@ -26,23 +26,26 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="max-w-2xl mx-auto p-5 space-y-5">
+        <div className="max-w-3xl w-full mx-auto p-5 space-y-5">
             <h1 className="text-2xl font-bold">Snippet Vault</h1>
 
             <div className="flex gap-2">
                 <input
                     placeholder="Search..."
-                    className="border p-2 w-full"
+                    className="border p-2 w-full rounded-lg"
                     value={q}
                     onChange={(e) => setQ(e.target.value)}
                 />
                 <input
                     placeholder="Tag"
-                    className="border p-2"
+                    className="border p-2 rounded-lg"
                     value={tag}
                     onChange={(e) => setTag(e.target.value)}
                 />
-                <button onClick={load} className="bg-black text-white px-3">
+                <button
+                    onClick={load}
+                    className="bg-black text-white px-3 rounded-lg hover:bg-gray-800 cursor-pointer transition-all"
+                >
                     Go
                 </button>
             </div>

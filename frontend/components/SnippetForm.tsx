@@ -33,31 +33,31 @@ export default function SnippetForm({ onSubmit, initial }: FormProps) {
                     type,
                 });
             }}
-            className="space-y-3 border p-4 rounded"
+            className="flex flex-col w-full gap-3 border p-4 rounded-lg"
         >
             <input
-                className="w-full border p-2"
+                className="w-full border p-2 rounded-md"
                 placeholder="Title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
 
             <textarea
-                className="w-full border p-2"
+                className="w-full border p-2 rounded-md"
                 placeholder="Content"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
             />
 
             <input
-                className="w-full border p-2"
-                placeholder="tags (comma separated)"
+                className="w-full border p-2 rounded-md"
+                placeholder="Tags (comma separated)"
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
             />
 
             <select
-                className="w-full border p-2"
+                className="w-full border p-2 rounded-md"
                 value={type}
                 onChange={(e) =>
                     setType(e.target.value as "link" | "note" | "command")
@@ -68,7 +68,9 @@ export default function SnippetForm({ onSubmit, initial }: FormProps) {
                 <option value="command">Command</option>
             </select>
 
-            <button className="bg-black text-white px-4 py-2">Save</button>
+            <button className="bg-black text-white px-4 py-2 rounded-md hover:bg-gray-800 cursor-pointer transition-all">
+                Save
+            </button>
         </form>
     );
 }

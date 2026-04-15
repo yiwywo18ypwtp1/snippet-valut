@@ -18,7 +18,7 @@ export default function SnippetPage() {
     if (!snippet) return <p>Loading...</p>;
 
     return (
-        <div className="max-w-2xl mx-auto p-5 space-y-5">
+        <div className="max-w-xl w-full mx-auto p-5 space-y-5">
             <h1 className="text-xl font-bold">Edit Snippet</h1>
 
             <SnippetForm
@@ -30,7 +30,7 @@ export default function SnippetPage() {
             />
 
             <button
-                className="bg-red-500 text-white px-4 py-2"
+                className="bg-red-500 text-white px-4 py-2 w-full rounded-md hover:bg-red-400 cursor-pointer transition-all"
                 onClick={async () => {
                     await deleteSnippet(id as string);
                     router.push("/");
