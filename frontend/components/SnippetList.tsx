@@ -1,7 +1,7 @@
 import { Snippet } from "@/types/snippet";
 import Link from "next/link";
 
-export default function SnippetList({ snippets }: any) {
+export default function SnippetList({ snippets }: { snippets: Snippet[] }) {
     if (!snippets.length) {
         return <p>No snippets found</p>;
     }

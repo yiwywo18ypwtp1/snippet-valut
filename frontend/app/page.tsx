@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { getSnippets, createSnippet } from "@/api/api";
 import SnippetForm from "@/components/SnippetForm";
 import SnippetList from "@/components/SnippetList";
+import { CreateSnippet, Snippet } from "@/types/snippet";
 
 export default function Home() {
-    const [snippets, setSnippets] = useState([]);
-    const [q, setQ] = useState("");
-    const [tag, setTag] = useState("");
-    const [loading, setLoading] = useState(false);
+    const [snippets, setSnippets] = useState<Snippet[]>([]);
+    const [q, setQ] = useState<string>("");
+    const [tag, setTag] = useState<string>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     async function load() {
         setLoading(true);
@@ -47,7 +48,7 @@ export default function Home() {
             </div>
 
             <SnippetForm
-                onSubmit={async (data: any) => {
+                onSubmit={async (data: CreateSnippet) => {
                     await createSnippet(data);
                     load();
                 }}

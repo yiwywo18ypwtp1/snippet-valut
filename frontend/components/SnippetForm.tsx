@@ -9,10 +9,12 @@ type FormProps = {
 };
 
 export default function SnippetForm({ onSubmit, initial }: FormProps) {
-    const [title, setTitle] = useState(initial?.title || "");
-    const [content, setContent] = useState(initial?.content || "");
+    const [title, setTitle] = useState<string>(initial?.title || "");
+    const [content, setContent] = useState<string>(initial?.content || "");
     const [tags, setTags] = useState(initial?.tags?.join(",") || "");
-    const [type, setType] = useState(initial?.type || "note");
+    const [type, setType] = useState<"link" | "note" | "command">(
+        initial?.type || "note",
+    );
 
     return (
         <form
