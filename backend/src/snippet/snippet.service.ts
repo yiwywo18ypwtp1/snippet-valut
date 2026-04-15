@@ -1,72 +1,68 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
-import { Model } from "mongoose";
-import { CreateSnippetDto } from "src/dto/create-snippet.dto";
-import { UpdateSnippetDto } from "src/dto/update-snippet.dto";
-import { Snippet, SnippetDocument } from "src/schemas/snippet.schema";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { CreateSnippetDto } from 'src/dto/create-snippet.dto';
+import { UpdateSnippetDto } from 'src/dto/update-snippet.dto';
+import { Snippet, SnippetDocument } from 'src/schemas/snippet.schema';
 
 @Injectable()
 export class SnippetService {
-    constructor(
-        @InjectModel(Snippet.name)
-        private snippetModel: Model<SnippetDocument>,
-    ) { }
+  constructor(
+    @InjectModel(Snippet.name)
+    private snippetModel: Model<SnippetDocument>,
+  ) {}
 
-    create(dto: CreateSnippetDto) {
-        return this.snippetModel.create(dto);
+  create(dto: CreateSnippetDto) {
+    return this.snippetModel.create(dto);
+  }
+
+  findAll(q?: string, tag?: string) {
+    const filter: any = {};
+
+    if (q) {
+      filter.$or = [
+        { title: { $regex: q, $options: 'i' } },
+        { content: { $regex: q, $options: 'i' } },
+      ];
     }
 
-    findAll(q?: string, tag?: string) {
-        const filter: any = {};
-
-        if (q) {
-            filter.$or = [
-                { title: { $regex: q, $options: 'i' } },
-                { content: { $regex: q, $options: 'i' } },
-            ];
-        }
-
-        if (tag) {
-            filter.tags = tag;
-        }
-
-        return this.snippetModel.find(filter).sort({ createdAt: -1 });
+    if (tag) {
+      filter.tags = tag;
     }
 
-    async findOne(id: string) {
-        const snippet = await this.snippetModel.findById(id);
+    return this.snippetModel.find(filter).sort({ createdAt: -1 });
+  }
 
-        if (!snippet) {
-            throw new NotFoundException('Snippet not found');
-        }
+  async findOne(id: string) {
+    const snippet = await this.snippetModel.findById(id);
 
-        return snippet;
+    if (!snippet) {
+      throw new NotFoundException('Snippet not found');
     }
 
-    async update(id: string, dto: UpdateSnippetDto) {
-        const updated = await this.snippetModel.findByIdAndUpdate(
-            id,
-            dto,
-            {
-                new: true,
-                runValidators: true,
-            },
-        );
+    return snippet;
+  }
 
-        if (!updated) {
-            throw new Error('Snippet not found');
-        }
+  async update(id: string, dto: UpdateSnippetDto) {
+    const updated = await this.snippetModel.findByIdAndUpdate(id, dto, {
+      new: true,
+      runValidators: true,
+    });
 
-        return updated;
+    if (!updated) {
+      throw new Error('Snippet not found');
     }
 
-    async delete(id: string) {
-        const deleted = await this.snippetModel.findByIdAndDelete(id);
+    return updated;
+  }
 
-        if (!deleted) {
-            throw new NotFoundException('Snippet not found');
-        }
+  async delete(id: string) {
+    const deleted = await this.snippetModel.findByIdAndDelete(id);
 
-        return deleted;
+    if (!deleted) {
+      throw new NotFoundException('Snippet not found');
     }
+
+    return deleted;
+  }
 }
